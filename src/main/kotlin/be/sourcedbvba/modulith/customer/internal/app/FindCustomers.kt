@@ -2,6 +2,7 @@ package be.sourcedbvba.modulith.customer.internal.app
 
 import be.sourcedbvba.modulith.customer.internal.domain.CustomerRepository
 import org.jmolecules.architecture.hexagonal.Application
+import org.jmolecules.architecture.hexagonal.Port
 import org.jmolecules.architecture.hexagonal.PrimaryPort
 import org.springframework.stereotype.Component
 
@@ -10,7 +11,7 @@ data class FindCustomersResponseModel(
     val name: String
 )
 
-@PrimaryPort
+@Port
 interface FindCustomers {
     fun findAll(): List<FindCustomersResponseModel>
 }

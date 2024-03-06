@@ -3,6 +3,7 @@ package be.sourcedbvba.modulith
 import com.tngtech.archunit.core.importer.ClassFileImporter
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes
 import com.tngtech.archunit.library.Architectures
+import org.jmolecules.architecture.hexagonal.SecondaryPort
 import org.jmolecules.archunit.JMoleculesArchitectureRules
 import org.junit.jupiter.api.Test
 
@@ -24,6 +25,13 @@ class CleanArchitectureTests {
             .whereLayer("data infrastructure").mayOnlyAccessLayers("domain")
             .whereLayer("web infrastructure").mayOnlyAccessLayers("application")
         architecture.check(importedClasses);
+    }
+
+    @Test
+    fun `check domain secondary ports adhere to naming conventions`() {
+        val namingRule = classes().that().areAnnotatedWith(SecondaryPort::class.java)
+            .should().haveSimpleNameEndingWith("Repository")
+        namingRule.check(importedClasses);
     }
 
     @Test

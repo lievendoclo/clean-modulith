@@ -22,6 +22,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-graphql")
     implementation("com.apollographql.federation:federation-graphql-java-support:4.4.1")
     implementation("org.jmolecules:kmolecules-ddd:1.9.0")
+    implementation("org.jmolecules:jmolecules-events:1.9.0")
     implementation("org.jmolecules:jmolecules-hexagonal-architecture:1.9.0")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api")

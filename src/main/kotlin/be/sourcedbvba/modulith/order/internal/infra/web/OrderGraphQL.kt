@@ -1,13 +1,13 @@
 package be.sourcedbvba.modulith.order.internal.infra.web
 
 import be.sourcedbvba.modulith.order.internal.app.FindOrders
-import org.jmolecules.architecture.hexagonal.Adapter
+import org.jmolecules.architecture.hexagonal.PrimaryAdapter
 import org.jmolecules.ddd.types.Identifiable
 import org.springframework.graphql.data.method.annotation.BatchMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.stereotype.Controller
 
-@Adapter
+@PrimaryAdapter
 @Controller
 class OrderGraphQL(
     private val findOrders: FindOrders
