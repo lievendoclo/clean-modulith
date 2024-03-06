@@ -1,12 +1,8 @@
 package be.sourcedbvba.modulith.customer.internal.app
 
 import be.sourcedbvba.modulith.customer.internal.domain.CustomerRepository
-import org.jmolecules.architecture.hexagonal.Adapter
 import org.jmolecules.architecture.hexagonal.Application
-import org.jmolecules.architecture.hexagonal.Port
-import org.jmolecules.architecture.hexagonal.PrimaryAdapter
 import org.jmolecules.architecture.hexagonal.PrimaryPort
-import org.springframework.context.annotation.Primary
 import org.springframework.stereotype.Component
 
 data class FindCustomersResponseModel(

@@ -1,8 +1,8 @@
 package be.sourcedbvba.modulith.order.internal.domain
 
-import org.jmolecules.architecture.hexagonal.Port
+import org.jmolecules.architecture.hexagonal.SecondaryPort
 
-@Port
+@SecondaryPort
 interface OrderRepository {
     fun findAll(): List<Order>
 }

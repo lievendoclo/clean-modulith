@@ -2,11 +2,10 @@ package be.sourcedbvba.modulith.customer.internal.infra.data
 
 import be.sourcedbvba.modulith.customer.internal.domain.Customer
 import be.sourcedbvba.modulith.customer.internal.domain.CustomerRepository
-import org.jmolecules.architecture.hexagonal.Adapter
 import org.jmolecules.architecture.hexagonal.SecondaryAdapter
 import org.springframework.stereotype.Repository
 
-@Adapter
+@SecondaryAdapter
 @Repository
 class CustomerRepositoryImpl: CustomerRepository {
     override fun findCustomers(): List<Customer> {
