@@ -1,0 +1,8 @@
+type Query {
+    customers: [Customer]
+}
+
+type Customer @key(fields: "id") {
+    id: ID
+    name: String
+}
