@@ -1,5 +1,7 @@
 package be.sourcedbvba.modulith.customer.internal.infra.web
 
+import org.jmolecules.ddd.types.Identifiable
+
 data class CustomerJson(
-    val id: String
-)
+    override val id: String
+) : Identifiable<String>

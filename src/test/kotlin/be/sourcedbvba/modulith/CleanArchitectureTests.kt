@@ -3,6 +3,7 @@ package be.sourcedbvba.modulith
 import com.tngtech.archunit.core.importer.ClassFileImporter
 import com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes
 import com.tngtech.archunit.library.Architectures
+import org.jmolecules.archunit.JMoleculesArchitectureRules
 import org.junit.jupiter.api.Test
 
 class CleanArchitectureTests {
@@ -22,6 +23,12 @@ class CleanArchitectureTests {
             .whereLayer("application").mayOnlyAccessLayers("domain")
             .whereLayer("data infrastructure").mayOnlyAccessLayers("domain")
             .whereLayer("web infrastructure").mayOnlyAccessLayers("application")
+        architecture.check(importedClasses);
+    }
+
+    @Test
+    fun `check bounded contexts adhere to hexagonal architecture rules`() {
+        val architecture = JMoleculesArchitectureRules.ensureHexagonal()
         architecture.check(importedClasses);
     }
 }
