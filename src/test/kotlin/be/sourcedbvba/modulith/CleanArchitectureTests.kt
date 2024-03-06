@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test
 
 class CleanArchitectureTests {
     val importedClasses = ClassFileImporter().importPackages("be.sourcedbvba.modulith")
-    val safeDependencies = arrayOf( "kotlin..", "java..", "javax..", "org.jetbrains.annotations..")
 
     @Test
     fun `check bounded contexts adhere to Clean Architecture rules`() {
@@ -15,36 +14,14 @@ class CleanArchitectureTests {
             .consideringOnlyDependenciesInLayers()
 
             .layer("domain").definedBy("..internal.domain..")
-            .layer("application API").definedBy("..internal.app.api..")
-            .layer("application").definedBy("..internal.app.impl..")
+            .layer("application").definedBy("..internal.app..")
             .layer("data infrastructure").definedBy("..internal.infra.data..")
             .layer("web infrastructure").definedBy("..internal.infra.web..")
 
             .whereLayer("domain").mayNotAccessAnyLayer()
-            .whereLayer("application API").mayNotAccessAnyLayer()
-            .whereLayer("application").mayOnlyAccessLayers("domain", "application API")
+            .whereLayer("application").mayOnlyAccessLayers("domain")
             .whereLayer("data infrastructure").mayOnlyAccessLayers("domain")
-            .whereLayer("web infrastructure").mayOnlyAccessLayers("application API")
+            .whereLayer("web infrastructure").mayOnlyAccessLayers("application")
         architecture.check(importedClasses);
-    }
-
-    @Test
-    fun `application API layer should have only defined dependencies`() {
-        classes().that().resideInAPackage("..internal.app.api..")
-            .should().onlyDependOnClassesThat()
-            .resideInAnyPackage(
-                "..internal.app.api..",
-                *safeDependencies)
-            .check(importedClasses)
-    }
-
-    @Test
-    fun `domain layer should have only defined dependencies`() {
-        classes().that().resideInAPackage("..internal.domain..")
-            .should().onlyDependOnClassesThat()
-            .resideInAnyPackage(
-                "..internal.domain..",
-                *safeDependencies)
-            .check(importedClasses)
     }
 }

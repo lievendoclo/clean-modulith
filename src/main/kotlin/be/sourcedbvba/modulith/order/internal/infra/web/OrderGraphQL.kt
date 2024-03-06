@@ -1,6 +1,6 @@
 package be.sourcedbvba.modulith.order.internal.infra.web
 
-import be.sourcedbvba.modulith.order.internal.app.api.FindOrders
+import be.sourcedbvba.modulith.order.internal.app.FindOrders
 import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.stereotype.Controller
 
