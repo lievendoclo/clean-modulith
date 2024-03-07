@@ -28,13 +28,6 @@ class CleanArchitectureTests {
     }
 
     @Test
-    fun `check domain secondary ports adhere to naming conventions`() {
-        val namingRule = classes().that().areAnnotatedWith(SecondaryPort::class.java)
-            .should().haveSimpleNameEndingWith("Repository")
-        namingRule.check(importedClasses);
-    }
-
-    @Test
     fun `check bounded contexts adhere to hexagonal architecture rules`() {
         val architecture = JMoleculesArchitectureRules.ensureHexagonal()
         architecture.check(importedClasses);

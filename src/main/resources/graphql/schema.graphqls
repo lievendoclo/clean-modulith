@@ -3,6 +3,10 @@ type Query {
     orders: [Order]
 }
 
+type Mutation {
+    createCustomer(name: String): ID
+}
+
 type Order {
     id: ID
     title: String

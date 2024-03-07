@@ -1,9 +1,8 @@
 package be.sourcedbvba.modulith.customer.internal.app
 
-import be.sourcedbvba.modulith.customer.internal.domain.CustomerRepository
+import be.sourcedbvba.modulith.customer.internal.domain.Customers
 import org.jmolecules.architecture.hexagonal.Application
 import org.jmolecules.architecture.hexagonal.Port
-import org.jmolecules.architecture.hexagonal.PrimaryPort
 import org.springframework.stereotype.Component
 
 data class FindCustomersResponseModel(
@@ -18,10 +17,10 @@ interface FindCustomers {
 
 @Application
 @Component
-class DefaultFindCustomers(
-    private val customerRepository: CustomerRepository
+class FindCustomersQuery(
+    private val customers: Customers
 ) : FindCustomers {
     override fun findAll(): List<FindCustomersResponseModel> {
-       return customerRepository.findCustomers().map { FindCustomersResponseModel(it.id, it.name) }
+       return customers.findCustomers().map { FindCustomersResponseModel(it.id, it.name) }
     }
 }
